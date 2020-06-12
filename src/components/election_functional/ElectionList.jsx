@@ -1,33 +1,29 @@
 import React from "react";
 import ElectionItem from "./ElectionItem";
+import { useState, useEffect } from "react";
+
+import { getElections } from "../../util/api";
+import Spinner from "../Spinner";
 
 export default function ElectionList(props) {
-  let election = [
-    {
-      id: 1,
-      name: "Head of Kyiv",
-      startDate: "20.02.2020",
-      endDate: "25.02.2020",
-    },
-    {
-      id: 2,
-      name: "President",
-      startDate: "23.04.2024",
-      endDate: "31.09.2025",
-    },
-  ];
+  const [elections, setElections] = useState([]);
+
+  useEffect(() => {
+    getElections().then((res) => setElections(res));
+  }, []);
 
   return (
     <ul>
-      {election.map((elect) => {
-        return (
+      {elections.length > 0 ? (
+        elections.map((data) => (
           <ElectionItem
-            name={elect.name}
-            startDate={elect.startDate}
-            endDate={elect.endDate}
+            name={data.election.name}
+            start={data.election.description}
           />
-        );
-      })}
+        ))
+      ) : (
+        <Spinner />
+      )}
     </ul>
   );
 }

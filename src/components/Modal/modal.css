@@ -15,7 +15,7 @@
   width: 700px;
   border-radius: 5px;
   background-color: #dfe1eb;
-  height: 670px;
+  height: 850px;
 }
 
 .modal-exit-btn {
@@ -46,4 +46,12 @@
   border-style: none;
   width: 180px;
   color: white;
+}
+
+.modal_input{
+  width: 600px;
+  padding-left: 10px;
+  margin-bottom: 15px;
+  height: 25px;
+  border-radius: 7px;
 }
